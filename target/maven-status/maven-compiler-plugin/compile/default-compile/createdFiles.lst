@@ -1,5 +1,6 @@
 com\project\crm\settings\mapper\UserMapper.class
-com\project\crm\settings\bean\User.class
-com\project\crm\settings\service\impl\UserServiceImpl.class
 com\project\crm\settings\controller\UserController.class
 com\project\crm\settings\service\UserService.class
+com\project\crm\settings\bean\User.class
+com\project\crm\settings\service\impl\UserServiceImpl.class
+com\project\crm\base\controller\ViewController.class

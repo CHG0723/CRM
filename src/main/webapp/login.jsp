@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="position: absolute; top: 0px; left: 0px; width: 60%;">
-		<img src="/crm/image/IMG_7114.JPG" alt="CRM关系管理系统" title="CRM关系管理系统" style="width: 100%; height: 90%; position: relative; top: 50px;">
+		<img src="/crm/image/IMG_7114.JPG" alt="CRM关系管理系统" title="CRM关系管理系统" style="width: 100%; position: relative; top: 50px;">
 	</div>
 	<div id="top" style="height: 50px; background-color: #3C3C3C; width: 100%;">
 		<div style="position: absolute; top: 5px; left: 0px; font-size: 30px; font-weight: 400; color: white; font-family: 'times new roman'">CRM &nbsp;<span style="font-size: 12px;">&copy;客户关系&nbsp;管理系统</span></div>

@@ -1,5 +1,11 @@
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\bean\User.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\controller\UserController.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\service\impl\UserServiceImpl.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\exception\CrmException.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\service\UserService.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\constants\CrmConstants.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\MD5Util.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\constants\CrmExceptionEnum.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\UUIDUtil.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\DateTimeUtil.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\mapper\UserMapper.java
