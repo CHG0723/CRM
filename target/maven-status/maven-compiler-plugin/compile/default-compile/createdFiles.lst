@@ -1,6 +1,16 @@
 com\project\crm\settings\mapper\UserMapper.class
+com\project\crm\workbench\bean\ActivityQueryVo.class
+com\project\crm\workbench\service\ActivityService.class
+com\project\crm\workbench\mapper\ActivityRemarkMapper.class
 com\project\crm\settings\controller\UserController.class
 com\project\crm\settings\service\UserService.class
 com\project\crm\settings\bean\User.class
 com\project\crm\settings\service\impl\UserServiceImpl.class
+com\project\crm\workbench\mapper\ActivityMapper.class
+com\project\crm\workbench\bean\ActivityRemark.class
+com\project\crm\workbench\controller\ActivityController.class
 com\project\crm\base\controller\ViewController.class
+com\project\crm\base\bean\PaginationVo.class
+com\project\crm\workbench\service\impl\ActivityServiceImpl.class
+com\project\crm\base\bean\ResultVo.class
+com\project\crm\workbench\bean\Activity.class

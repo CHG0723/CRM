@@ -5,7 +5,14 @@ import com.project.crm.base.exception.CrmException;
 import com.project.crm.base.util.DateTimeUtil;
 import com.project.crm.base.util.MD5Util;
 import com.project.crm.base.util.UUIDUtil;
+import com.project.crm.workbench.mapper.ActivityMapper;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -30,7 +37,7 @@ public class CRMTest {
     //测试md5加密
     @Test
     public void test02(){
-        String admin = MD5Util.getMD5("lmr");
+        String admin = MD5Util.getMD5("hei");
         System.out.println(admin);
     }
 
@@ -59,5 +66,19 @@ public class CRMTest {
        }catch (CrmException e){
            System.out.println(e.getMessage());
        }
+    }
+
+    //测试查询所有市场活动信息
+    @Test
+    public void test05(){
+        BeanFactory beanFactory =
+                new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+       SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) beanFactory.getBean("sqlSessionFactory");
+        ActivityMapper activityMapper = sqlSessionFactory.openSession().getMapper(ActivityMapper.class);
+
+        List<Map<String, String>> maps =
+                activityMapper.queryAllActivity();
+
+        System.out.println(maps);
     }
 }

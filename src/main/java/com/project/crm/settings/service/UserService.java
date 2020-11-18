@@ -17,4 +17,6 @@ public interface UserService {
     List<User> queryUsers();
 
     User login(User user);
+
+    List<User> queryAllUsers();
 }

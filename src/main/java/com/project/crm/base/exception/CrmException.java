@@ -10,6 +10,9 @@ import com.project.crm.base.constants.CrmExceptionEnum;
  * @CreateDate: 2020/11/17 16:12
  * Version:  V1.0
  * Copyright:Copyright(c)2020
+ * 自定义异常:
+ * 1、可以给用户返回信息
+ * 2、项目线上出现bug
  */
 public class CrmException extends RuntimeException{
 

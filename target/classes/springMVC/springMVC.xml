@@ -10,7 +10,8 @@
 	<!-- 第1步：扫描Controller -->
 	<context:component-scan
             base-package="com.project.crm.settings.controller
-,com.project.crm.base.controller" />
+,com.project.crm.base.controller,
+com.project.crm.workbench.controller" />
 
 	<!-- 第2步：打开注解驱动,配置处理器映射器和处理器适配器 -->
 	<mvc:annotation-driven>
