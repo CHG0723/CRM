@@ -5,6 +5,7 @@ import tk.mybatis.mapper.code.Style;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * @ProjectName: CRM
@@ -31,6 +32,9 @@ public class Activity {
     private String editTime;
     private String editBy;
 
+    private List<ActivityRemark> activityRemarks;
+
+
     @Override
     public String toString() {
         return "Activity{" +
@@ -45,7 +49,16 @@ public class Activity {
                 ", createBy='" + createBy + '\'' +
                 ", editTime='" + editTime + '\'' +
                 ", editBy='" + editBy + '\'' +
+                ", activityRemarks=" + activityRemarks +
                 '}';
+    }
+
+    public List<ActivityRemark> getActivityRemarks() {
+        return activityRemarks;
+    }
+
+    public void setActivityRemarks(List<ActivityRemark> activityRemarks) {
+        this.activityRemarks = activityRemarks;
     }
 
     public String getId() {

@@ -10,15 +10,23 @@ package com.project.crm.base.bean;
  * Copyright:Copyright(c)2020
  */
 public class ResultVo {
-private boolean isOk;
+private boolean success;
 private String mess;
 
     @Override
     public String toString() {
         return "ResultVo{" +
-                "isOk=" + isOk +
+                "success=" + success +
                 ", mess='" + mess + '\'' +
                 '}';
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getMess() {
@@ -27,13 +35,5 @@ private String mess;
 
     public void setMess(String mess) {
         this.mess = mess;
-    }
-
-    public boolean isOk() {
-        return isOk;
-    }
-
-    public void setOk(boolean ok) {
-        isOk = ok;
     }
 }

@@ -77,7 +77,7 @@ public class CRMTest {
         ActivityMapper activityMapper = sqlSessionFactory.openSession().getMapper(ActivityMapper.class);
 
         List<Map<String, String>> maps =
-                activityMapper.queryAllActivity();
+                activityMapper.queryAllActivity(null);
 
         System.out.println(maps);
     }

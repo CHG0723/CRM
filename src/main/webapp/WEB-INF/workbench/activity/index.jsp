@@ -104,44 +104,42 @@
 				<div class="modal-body">
 				
 					<form class="form-horizontal" role="form">
-					
+					<input type="hidden" id="activityId"/>
 						<div class="form-group">
 							<label for="edit-marketActivityOwner" class="col-sm-2 control-label">所有者<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="edit-marketActivityOwner">
-								  <option>zhangsan</option>
-								  <option>lisi</option>
-								  <option>wangwu</option>
+
 								</select>
 							</div>
                             <label for="edit-marketActivityName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-marketActivityName" value="发传单">
+                                <input type="text" class="form-control" id="edit-marketActivityName">
                             </div>
 						</div>
 
 						<div class="form-group">
 							<label for="edit-startTime" class="col-sm-2 control-label">开始日期</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="edit-startTime" value="2020-10-10">
+								<input type="text" class="form-control" id="edit-startTime">
 							</div>
 							<label for="edit-endTime" class="col-sm-2 control-label">结束日期</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="edit-endTime" value="2020-10-20">
+								<input type="text" class="form-control" id="edit-endTime" >
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="edit-cost" class="col-sm-2 control-label">成本</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="edit-cost" value="5,000">
+								<input type="text" class="form-control" id="edit-cost" >
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="edit-describe" class="col-sm-2 control-label">描述</label>
 							<div class="col-sm-10" style="width: 81%;">
-								<textarea class="form-control" rows="3" id="edit-describe">市场活动Marketing，是指品牌主办或参与的展览会议与公关市场活动，包括自行主办的各类研讨会、客户交流会、演示会、新产品发布会、体验会、答谢会、年会和出席参加并布展或演讲的展览会、研讨会、行业交流会、颁奖典礼等</textarea>
+								<textarea class="form-control" rows="3" id="edit-describe"></textarea>
 							</div>
 						</div>
 						
@@ -150,7 +148,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">更新</button>
+					<button type="button" class="btn btn-primary" id="updateActivity-btn">更新</button>
 				</div>
 			</div>
 		</div>
@@ -207,8 +205,8 @@
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 5px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
 				  <button type="button" id="createActivity" class="btn btn-primary" data-toggle="modal" data-target="#createActivityModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
-				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+				  <button id="updateActivityBtn" type="button" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
+				  <button id="deleteActivityBtn" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
 				
 			</div>
@@ -331,12 +329,12 @@
 					//list是每页遍历的数据
 					var list = dataList[i];
 					$('#activityBody').append("<tr class=\"active\">\n" +
-							"<td><input type=\"checkbox\" /></td>\n" +
-							"<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='detail.html';\">"+list.name+"</a></td>\n" +
+							"<td><input type=\"checkbox\" class='son' value="+list.id+" /></td>\n" +
+							"<td><a style=\"text-decoration: none; cursor: pointer;\" href=/crm/workbench/activity/queryActivityDetailById?id="+list.id+">"+list.name+"</a></td>\n" +
 							"<td>"+list.uname+"</td>\n" +
 							"<td>"+list.startDate+"</td>\n" +
 							"<td>"+list.endDate+"</td>\n" +
-							"</tr>")
+							"</tr> ");
 				}
 
 				//利用分页插件查询第一页数据
@@ -368,7 +366,7 @@
 	$("#startTime").datetimepicker({
 		language:  "zh-CN",
 		format: "yyyy-mm-dd",//显示格式
-		minView: "hour",//设置只显示到月份
+		minView: "day",//设置只显示到月份
 		initialDate: new Date(),//初始化当前日期
 		autoclose: true,//选中自动关闭
 		todayBtn: true, //显示今日按钮
@@ -379,7 +377,7 @@
 	$("#endTime").datetimepicker({
 		language:  "zh-CN",
 		format: "yyyy-mm-dd",//显示格式
-		minView: "hour",//设置只显示到月份
+		minView: "day",//设置只显示到月份
 		initialDate: new Date(),//初始化当前日期
 		autoclose: true,//选中自动关闭
 		todayBtn: true, //显示今日按钮
@@ -392,7 +390,7 @@
 	$("#create-startTime").datetimepicker({
 		language:  "zh-CN",
 		format: "yyyy-mm-dd",//显示格式
-		minView: "hour",//设置只显示到月份
+		minView: "day",//设置只显示到月份
 		initialDate: new Date(),//初始化当前日期
 		autoclose: true,//选中自动关闭
 		todayBtn: true, //显示今日按钮
@@ -403,7 +401,7 @@
 	$("#create-endTime").datetimepicker({
 		language:  "zh-CN",
 		format: "yyyy-mm-dd",//显示格式
-		minView: "hour",//设置只显示到月份
+		minView: "day",//设置只显示到月份
 		initialDate: new Date(),//初始化当前日期
 		autoclose: true,//选中自动关闭
 		todayBtn: true, //显示今日按钮
@@ -412,7 +410,133 @@
 	});
 
 
+//点击修改按钮弹出模态窗
+	$('#updateActivityBtn').click(function () {
+		//获取勾中的son的个数
+		if ($('.son:checked').length ==0){
+			alert("至少勾中一条记录");
+			return;
+		}else if ($('.son:checked').length>1){
+			alert("只能勾中一条记录");
+			return;
+		}else{
+		    //手动显示模态窗
+			$('#editActivityModal').modal('show');
+			//异步查询所有者信息
+            $.ajax({
+                url : '/crm/workbench/activity/queryAllUsers',
+                type : 'get',
+                dataType : 'json',
+                success : function(data){
+                    //清空上一页拼接的数据
+                    $('#edit-marketActivityOwner').html("");
+                    for (var i=0;i < data.length;i++){
+                        $('#edit-marketActivityOwner')
+                            .append("<option value="+data[i].id+">"+data[i].name+"</option>");
+                    }
+                }
+            });
 
+            //向后台传递主键,查询该条市场活动信息
+            $.ajax({
+                url : '/crm/workbench/activity/queryActivityById',
+                type : 'get',
+				data : {'id':$('.son:checked').val()},
+                dataType : 'json',
+                success : function(data){
+                	//隐藏域
+					$('#activityId').val(data.id);
+					//让修改模态窗的所有者和查询出来的市场活动的所有者相同
+					//市场活动的owner
+					var owner = data.owner;
+					$('#edit-marketActivityOwner option').each(function () {
+						if($(this).val() == owner){
+							//选中
+							$(this).prop('selected',true);
+						}
+					});
 
+					$('#edit-marketActivityName').val(data.name);
+					$('#edit-startTime').val(data.startDate);
+					$('#edit-endTime').val(data.endDate);
+					$('#edit-cost').val(data.cost);
+					$('#edit-describe').val(data.description);
+                }
+            });
 
+		}
+
+	});
+	//点击修改模态窗口更新按钮，异步提交表单
+	$('#updateActivity-btn').click(function () {
+
+		$.ajax({
+			url : '/crm/workbench/activity/updateActivity',
+			data : {
+				'id' : $('#activityId').val(),
+				'owner' : $('#edit-marketActivityOwner').val(),
+				'name' : $('#edit-marketActivityName').val(),
+				'startDate' : $('#edit-startTime').val(),
+				'endDate' : $('#edit-endTime').val(),
+				'cost' : $('#edit-cost').val(),
+				'description' : $('#edit-describe').val(),
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(data){
+				alert(data.mess);
+				//刷新页面
+				pageList(1,2);
+				//关闭模态窗口	easyui
+				$('#editActivityModal').modal('hide');
+			}
+		});
+	});
+
+               //修改模态窗口的日历插件
+	$("#edit-startTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd",//显示格式
+		minView: "day",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
+	});
+
+	$("#edit-endTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd",//显示格式
+		minView: "day",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
+	});
+
+	//删除市场活动
+	$('#deleteActivityBtn').bind('click',function () {
+		//获取勾中的记录,获取主键
+		$.ajax({
+			url : '/crm/workbench/activity/deleteActivity',
+			data : {
+				'id' : $('.son:checked').val()
+			},
+			type : 'get',
+			dataType : 'json',
+			success : function(data){
+				refresh(data);
+			}
+		});
+	});
+
+	//增删改之后弹出消息,刷新页面
+	function refresh(data) {
+		alert(data.mess);
+		//刷新页面
+		pageList(1,2);
+
+	}
 </script>
