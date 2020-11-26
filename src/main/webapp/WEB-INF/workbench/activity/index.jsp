@@ -261,13 +261,13 @@
 			dataType : 'json',
 			success : function(data){
 				alert(data.mess);
-
+				//表单重置
+				$('#createActivityForm')[0].reset();
 				/*
 				modal函数:弹窗函数 show:显示  hide:隐藏
 				 */
 				//隐藏模态窗口
 				$('#createActivityModal').modal('hide');
-
 				//调用pageList刷新页面
 				pageList(1,2);
 			}
@@ -277,7 +277,6 @@
 
 	//打开新建市场活动模态窗查询所有用户
 	$('#createActivity').click(function () {
-
 		$.ajax({
 			url : '/crm/workbench/activity/queryAllUsers',
 			type : 'get',
@@ -300,8 +299,6 @@
 	function queryActivity(){
 		pageList(1,2);
 	}
-
-
 
 	/*参数一:当前页码
 	参数二:每页记录数

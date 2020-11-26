@@ -1,5 +1,6 @@
 package com.project.crm.base.constants;
 
+
 /**
  * @ProjectName: CRM
  * @Package: com.project.crm.base.constants

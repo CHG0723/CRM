@@ -4,8 +4,12 @@
 <meta charset="UTF-8">
 
 	<link href="/crm/jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="/crm/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+
 	<script type="text/javascript" src="/crm/jquery/jquery-1.11.1-min.js"></script>
 	<script type="text/javascript" src="/crm/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
 
 	//默认情况下取消和保存按钮是隐藏的
@@ -52,7 +56,6 @@
 </head>
 <body>
 
-
     <!-- 修改市场活动的模态窗口 -->
     <div class="modal fade" id="editActivityModal" role="dialog">
         <div class="modal-dialog" role="document" style="width: 85%;">
@@ -64,7 +67,7 @@
                     <h4 class="modal-title" id="myModalLabel">修改市场活动</h4>
                 </div>
                 <div class="modal-body">
-
+					<input type="hidden" id="activityId"/>
                     <form class="form-horizontal" role="form">
 
                         <div class="form-group">
@@ -76,32 +79,32 @@
                             </div>
                             <label for="edit-marketActivityName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-marketActivityName" value="${activity.name}">
+                                <input type="text" class="form-control" id="edit-marketActivityName">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="edit-startTime" class="col-sm-2 control-label">开始日期</label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-startTime" value="${activity.startDate}">
+                                <input type="text" class="form-control" id="edit-startTime">
                             </div>
                             <label for="edit-endTime" class="col-sm-2 control-label">结束日期</label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-endTime" value="${activity.endDate}">
+                                <input type="text" class="form-control" id="edit-endTime">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="edit-cost" class="col-sm-2 control-label">成本</label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-cost" value="${activity.cost}">
+                                <input type="text" class="form-control" id="edit-cost">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="edit-describe" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-10" style="width: 81%;">
-                                <textarea class="form-control" rows="3" id="edit-describe">${activity.description}</textarea>
+                                <textarea class="form-control" rows="3" id="edit-describe"></textarea>
                             </div>
                         </div>
 
@@ -110,7 +113,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">更新</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="updateActivity-btn">更新</button>
                 </div>
             </div>
         </div>
@@ -321,6 +324,7 @@
 </html>
 
 <script>
+	//编辑
 	$('#updateActivityBtn').click(function () {
 			//手动显示模态窗
 			$('#editActivityModal').modal('show');
@@ -338,8 +342,68 @@
 					}
 				}
 			});
+			//向后台传递主键查询该条市场活动信息
+		$.ajax({
+			url : '/crm/workbench/activity/queryActivityById',
+			type : 'get',
+			data :{'id' : '${activity.id}'},
+			dataType : 'json',
+			success : function(data){
+				$('#activityId').val(data.id);
+				$('#edit-marketActivityName').val(data.name);
+				$('#edit-startTime').val(data.startDate);
+				$('#edit-endTime').val(data.endDate);
+				$('#edit-cost').val(data.cost);
+				$('#edit-describe').val(data.description);
+			}
+		});
+
+	});
+	//点击更新按钮,异步提交
+	$('#updateActivity-btn').click(function () {
+		$.ajax({
+			url : '/crm/workbench/activity/updateActivity',
+			data : {
+				'id' : $('#activityId').val(),
+				'owner' : $('#edit-marketActivityOwner').val(),
+				'name' : $('#edit-marketActivityName').val(),
+				'startDate' : $('#edit-startTime').val(),
+				'endDate' : $('#edit-endTime').val(),
+				'cost' : $('#edit-cost').val(),
+				'description' : $('#edit-describe').val(),
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(data){
+				alert(data.mess);
+				//关闭模态窗口
+				$('#editActivityModal').modal('hide');
+			}
+		});
+	});
 
 
+	//修改模态窗口的日历插件
+	$("#edit-startTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd",//显示格式
+		minView: "month",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
+	});
+
+	$("#edit-endTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd",//显示格式
+		minView: "month",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
 	});
 
 
@@ -377,6 +441,7 @@
 			location.href = '/crm/workbench/activity/deleteActivityByDetail?id=${activity.id}';
 		}
 	});
+
 
 
 </script>

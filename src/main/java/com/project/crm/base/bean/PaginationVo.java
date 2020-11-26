@@ -1,7 +1,6 @@
 package com.project.crm.base.bean;
 
 import com.github.pagehelper.PageInfo;
-import com.project.crm.base.constants.CrmConstants;
 
 import java.util.List;
 

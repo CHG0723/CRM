@@ -15,7 +15,17 @@ public enum  CrmExceptionEnum {
     ACTIVITY_DELETE("002","删除市场活动失败"),
     ACTIVITY_REMARK_UPDATE("002","更新市场活动备注失败"),
     ACTIVITY_REMARK_DELETE("002","删除市场活动备注失败"),
-    ACTIVITY_REMARK_SAVE("002","添加市场活动备注失败");
+    ACTIVITY_REMARK_SAVE("002","添加市场活动备注失败"),
+
+   CLUE_SAVE("003","添加线索失败"),
+   CLUE_REMARK_UPDATE("003","更新线索失败"),
+   CLUE_REMARK_SAVE("003","添加线索失败"),
+   CLUE_ACTIVITY_UNBIND("003","线索和市场活动解绑失败"),
+   CLUE_UPADATE("003","更新线索失败"),
+   CLUE_REMARK_DELETE("003","删除线索失败"),
+    CLUE_ACTIVITY_BIND("003","线索和市场活动绑定失败"),
+    CLUE_CONVERT("003","线索转换失败");
+
 
 
 
