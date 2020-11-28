@@ -37,6 +37,8 @@ public class DictionaryServiceImpl implements DictionaryService {
         for (DictionaryType dictionaryType : dictionaryTypes) {
             //取出每个字典类型的主键,查询该类型下的所有字典类型对应的values
             Example example = new Example(DictionaryValue.class);
+            //按orderNo进行升序排序
+            example.setOrderByClause("orderNo");
             example.createCriteria().andEqualTo("typeCode",dictionaryType.getCode());
             List<DictionaryValue> dictionaryValues = dictionaryValueMapper.selectByExample(example);
 

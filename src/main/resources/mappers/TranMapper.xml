@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.crm.workbench.mapper.TransactionMapper">
+
+    <select id="queryAllTran" resultType="map">
+        select t.*,u.name uname from tbl_tran t
+        left join tbl_user u on t.owner = u.id
+        <where>
+            <if test="name !=null and name !=''">
+                t.name like concat('%',#{name},'%')
+            </if>
+
+            <if test="customerId !=null and customerId !=''">
+                and t.customerId  like concat('%',#{customerId},'%')
+            </if>
+
+            <if test="type !=null and type !=''">
+                and  t.type like concat('%',#{type},'%')
+            </if>
+
+            <if test="owner !=null and owner !=''">
+                and u.name like concat('%',#{owner},'%')
+            </if>
+            <if test="stage !=null and stage !=''">
+                and  t.stage like concat('%',#{stage},'%')
+            </if>
+
+            <if test="source !=null and source !=''">
+                and  t.source like concat('%',#{source},'%')
+            </if>
+            <if test="contactsId !=null and contactsId !=''">
+                and  t.contactsId like concat('%',#{contactsId},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

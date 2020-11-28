@@ -1,3 +1,4 @@
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\controller\TranController.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\bean\DictionaryValue.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\bean\ResultVo.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\TransactionMapper.java
@@ -5,7 +6,10 @@ D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\Activit
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\controller\DictionaryController.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\UUIDUtil.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\ActivityRemark.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\service\TranService.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\service\impl\TranServiceImpl.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\controller\UserController.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\TransactionHistory.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\ClueActivityRelation.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\MD5Util.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\controller\ViewController.java
@@ -16,6 +20,7 @@ D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\Activit
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\ClueMapper.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\service\DictionaryService.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\mapper\DictionaryTypeMapper.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\TransactionRemark.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\ActivityMapper.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\service\ActivityService.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\ClueActivityRelationMapper.java
@@ -27,6 +32,7 @@ D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\Contact
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\Transaction.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\bean\User.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\service\impl\UserServiceImpl.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\TransactionHistoryMapper.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\Clue.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\service\impl\ClueServiceImpl.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\bean\DictionaryType.java
@@ -46,6 +52,8 @@ D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\controller\A
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\bean\PaginationVo.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\base\util\DateTimeUtil.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\ContactsRemarkMapper.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\TransactionRemarkMapper.java
+D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\TranQueryVo.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\bean\ClueRemark.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\workbench\mapper\ActivityRemarkMapper.java
 D:\JavaWeb\javaweb_code\CRM\src\main\java\com\project\crm\settings\service\impl\DictionaryServiceImpl.java

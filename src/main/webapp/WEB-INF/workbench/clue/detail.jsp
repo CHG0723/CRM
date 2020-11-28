@@ -676,7 +676,7 @@ function saveBind() {
 	$.ajax({
 		url : '/crm/workbench/clue/saveBind',
 		data : {
-			'clueId' :'${clue.id}',
+			'tranId' :'${trans.id}',
 			'activityIds':activityIds.join()
 		},
 		type : 'get',

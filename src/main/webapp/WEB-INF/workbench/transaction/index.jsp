@@ -1,16 +1,20 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link href="../../jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<link href="../../jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+	<link href="/crm/jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="/crm/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 
-<script type="text/javascript" src="../../jquery/jquery-1.11.1-min.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script type="text/javascript" src="/crm/jquery/jquery-1.11.1-min.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 
+	<%--导入分页插件--%>
+	<link href="/crm/jquery/bs_pagination/jquery.bs_pagination.min.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="/crm/jquery/bs_pagination/en.js"></script>
+	<script type="text/javascript" src="/crm/jquery/bs_pagination/jquery.bs_pagination.min.js"></script>
 <script type="text/javascript">
 
 	$(function(){
@@ -149,68 +153,83 @@
 							<td>联系人名称</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>
-							<td>动力节点</td>
-							<td>谈判/复审</td>
-							<td>新业务</td>
-							<td>zhangsan</td>
-							<td>广告</td>
-							<td>李四</td>
-						</tr>
-                        <tr class="active">
-                            <td><input type="checkbox" /></td>
-                            <td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>
-                            <td>动力节点</td>
-                            <td>谈判/复审</td>
-                            <td>新业务</td>
-                            <td>zhangsan</td>
-                            <td>广告</td>
-                            <td>李四</td>
-                        </tr>
+					<tbody id="activityBody">
+
 					</tbody>
 				</table>
 			</div>
-			
+
+			<%--分页插件--%>
 			<div style="height: 50px; position: relative;top: 20px;">
-				<div>
-					<button type="button" class="btn btn-default" style="cursor: default;">共<b>50</b>条记录</button>
-				</div>
-				<div class="btn-group" style="position: relative;top: -34px; left: 110px;">
-					<button type="button" class="btn btn-default" style="cursor: default;">显示</button>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							10
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">20</a></li>
-							<li><a href="#">30</a></li>
-						</ul>
-					</div>
-					<button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
-				</div>
-				<div style="position: relative;top: -88px; left: 285px;">
-					<nav>
-						<ul class="pagination">
-							<li class="disabled"><a href="#">首页</a></li>
-							<li class="disabled"><a href="#">上一页</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">下一页</a></li>
-							<li class="disabled"><a href="#">末页</a></li>
-						</ul>
-					</nav>
+				<div  id="activityPage">
+
 				</div>
 			</div>
-			
 		</div>
 		
 	</div>
 </body>
 </html>
+
+
+<script>
+	//跳转到活动列表首页的时候,向后台发送查询所有市场活动信息列表的异步请求
+	//刷新页面的方法
+	pageList(1,2);
+	function pageList(page,pageSize) {
+		$.ajax({
+			url : '/crm/workbench/transaction/queryAllTran',
+			data : {'page':page,
+				'pageSize':pageSize,
+				'name':$('#name').val(),
+				'customerId':$('#customerId').val(),
+				'stage':$('#stage').val(),
+				'type':$('#type').val(),
+				'owner':$('#owner').val(),
+				'source':$('#source').val(),
+				'contactsId':$('#contactsId').val()},
+			type : 'get',
+			dataType : 'json',
+			success : function(data){
+				//清空上一页拼接的数据
+				$('#activityBody').html("");
+				//后台传递的每页的总数据
+				var dataList = data.dataList;
+				for (var i=0;i<dataList.length;i++){
+					//list是每页遍历的数据
+					var list = dataList[i];
+					$('#activityBody').append("\t<tr>\n" +
+							"\t\t\t\t\t\t\t<td><input type=\"checkbox\" /></td>\n" +
+							"\t\t\t\t\t\t\t<td><a style=\"text-decoration: none; cursor: pointer;\" href=/crm/workbench/transaction/queryTranDetailById?id="+list.id+">"+list.name+"</a></td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.customerId+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.stage+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.type+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.owner+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.source+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+list.contactsId+"</td>\n" +
+							"\t\t\t\t\t\t</tr>");
+				}
+
+				//利用分页插件查询第一页数据
+				$("#activityPage").bs_pagination({
+					currentPage: data.page, // 页码
+					rowsPerPage: data.pageSize, // 每页显示的记录条数
+					maxRowsPerPage: 20, // 每页最多显示的记录条数
+					totalPages: data.pages, // 总页数
+					totalRows: data.total, // 总记录条数
+					visiblePageLinks: 3, // 显示几个卡片
+					showGoToPage: true,
+					showRowsPerPage: true,
+					showRowsInfo: true,
+					showRowsDefaultInfo: true,
+					//回调函数，用户每次点击分页插件进行翻页的时候就会触发该函数
+					onChangePage : function(event, obj){
+						//刷新页面，obj.currentPage:当前点击的页码
+						pageList(obj.currentPage,obj.rowsPerPage);
+					}
+				});
+			}
+		});
+	}
+
+</script>

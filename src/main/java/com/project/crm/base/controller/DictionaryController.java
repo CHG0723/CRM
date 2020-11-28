@@ -25,6 +25,7 @@ public class DictionaryController {
     public List<DictionaryType> dictionaryCache(HttpSession session){
         ServletContext servletContext = session.getServletContext();
         List<DictionaryType> dictionaryTypes = (List<DictionaryType>) servletContext.getAttribute("dictionaryTypes");
+
         return dictionaryTypes;
     }
 

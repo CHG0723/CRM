@@ -9,8 +9,6 @@ import com.project.crm.base.exception.CrmException;
 import com.project.crm.settings.bean.User;
 import com.project.crm.settings.service.UserService;
 import com.project.crm.workbench.bean.*;
-import com.project.crm.workbench.mapper.ClueRemarkMapper;
-import com.project.crm.workbench.service.ActivityService;
 import com.project.crm.workbench.service.ClueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -252,7 +250,7 @@ public class ClueController {
         return resultVo;
     }
 
-    //线索个市场活动关联成功后,再异步花擦讯关联后的所有市场活动
+    //线索个市场活动关联成功后,再异步查询关联后的所有市场活动
     @RequestMapping("/workbench/clue/queryClueActivity")
     @ResponseBody
     public  List<Activity> queryClueActivity(String clueId){
@@ -268,6 +266,11 @@ public class ClueController {
            return "/clue/convert";
     }
     //转换
+    /*
+    * transaction:用于接收交易的表单
+    * clueId:线索id
+    * isCreateTransaction:是否进行交易
+    */
     @RequestMapping("/workbench/clue/convert")
     public String convert(Transaction transaction,String clueId,HttpSession session,String isCreateTransaction){
            User user = (User) session.getAttribute(CrmConstants.LOGIN_USER);
