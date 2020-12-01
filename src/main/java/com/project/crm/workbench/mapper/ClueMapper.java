@@ -9,4 +9,6 @@ import java.util.Map;
 
 public interface ClueMapper extends Mapper<Clue> {
     List<Map<String, String>> queryAllClue(ClueQueryVo queryVo);
+
+    List<Map<String, String>> queryClueEcharts();
 }

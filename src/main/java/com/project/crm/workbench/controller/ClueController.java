@@ -277,4 +277,12 @@ public class ClueController {
            clueService.convert(transaction,clueId,user.getName(),isCreateTransaction);
            return "redirect:/toView/clue/index";
     }
+
+    //异步查询图表信息
+    //异步查询统计交易图表信息
+    @RequestMapping("/workbench/chart/clue/queryClueEcharts")
+    @ResponseBody
+    public TransactionEchartsResultVo queryClueEcharts(){
+        return clueService.queryClueEcharts();
+    }
 }

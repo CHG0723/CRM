@@ -35,4 +35,6 @@ public interface ClueService {
     void convert(Transaction transaction,String clueId,String username,String isCreateTransaction);
 
     List<Activity> queryActivityIncludeNow(String clueId, String activityName);
+
+    TransactionEchartsResultVo queryClueEcharts();
 }

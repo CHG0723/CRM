@@ -50,8 +50,7 @@ public class TranController {
         return paginationVo;
     }
 
-
-    //根据主键查询市场活动
+    //从交易列表页面点击具体交易,查询出对应列表信息,跳转到交易详情页
     @RequestMapping("/workbench/transaction/queryTranDetailById")
     public String queryTranDetailById(String id, Model model,HttpSession session){
         Map<String,String> map = (Map<String, String>)
@@ -98,8 +97,22 @@ public class TranController {
         String customerId = tranService.queryCustomerByName(name);
         return customerId;
     }
+    //返回交易阶段图标,同时支持交易详情点击交易图标，改变交易阶段的状态
+    @RequestMapping("/workbench/transaction/stageList")
+    @ResponseBody
+    public List<Map<String, ? extends Object>> stageList(Integer index,String tranId,HttpSession session){
+        Map<String,String> map =
+                (Map<String, String>) session.getServletContext().getAttribute("stage2PossibilityMap");
+        User user = (User) session.getAttribute(CrmConstants.LOGIN_USER);
+        List<Map<String, ? extends Object>> stageList = tranService.stageList(user.getName(),index,tranId,map);
+        return stageList;
+    }
 
-    //从交易列表页面点击具体交易,查询出对应列表信息,跳转到交易详情页
 
-
+    //异步查询统计交易图表信息
+    @RequestMapping("/workbench/chart/transaction/queryTransactionEcharts")
+    @ResponseBody
+    public TransactionEchartsResultVo queryTransactionEcharts(){
+        return tranService.queryTransactionEcharts();
+    }
 }

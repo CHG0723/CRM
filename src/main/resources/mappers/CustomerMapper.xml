@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.crm.workbench.mapper.CustomerMapper">
+
+    
+    <select id="queryAllCustomer" resultType="map">
+        select c.*,u.name uname from tbl_customer c
+        left join tbl_user u on c.owner = u.id
+        <where>
+            <if test="name !=null and name !=''" >
+                and c.name like concat('%',#{name},'%')
+            </if>
+
+            <if test="owner !=null and owner !=''">
+                and u.name like concat('%',#{owner},'%')
+            </if>
+
+            <if test="phone !=null and phone !=''">
+                and c.phone like concat('%',#{phone},'%')
+            </if>
+
+            <if test="website !=null and website !=''">
+                and c.website like concat('%',#{website},'%')
+            </if>
+
+
+        </where>
+    </select>
+
+
+</mapper>

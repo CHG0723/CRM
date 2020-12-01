@@ -184,7 +184,6 @@
 				    </div>
 				  </div>
 
-
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">开始日期</div>
@@ -274,6 +273,8 @@
 		});
 
 	});
+
+
 
 	//打开新建市场活动模态窗查询所有用户
 	$('#createActivity').click(function () {

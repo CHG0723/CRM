@@ -9,4 +9,7 @@ import java.util.Map;
 
 public interface TransactionMapper extends Mapper<Transaction> {
     List<Map<String, String>> queryAllTran(TranQueryVo queryVo);
+
+    List<Map<String, String>> queryTransactionEcharts();
+
 }

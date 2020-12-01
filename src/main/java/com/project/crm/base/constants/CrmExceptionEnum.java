@@ -29,6 +29,7 @@ public enum  CrmExceptionEnum {
 
     TRANSACTION_SAVE("004","交易失败"),
     TRANSACTION_HISTORY_SAVE("004","交易历史创建失败"),
+    TRANSACTION_STAGE_UPDATE("004","交易阶段修改失败"),
 
     CUSTOMER_SAVE("005","创建客户失败");
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +71,6 @@ private TransactionRemarkMapper transactionRemarkMapper;
 
     @Override
     public List<Map<String, String>> queryAllClue(ClueQueryVo queryVo) {
-
         return clueMapper.queryAllClue(queryVo);
     }
 
@@ -474,5 +474,25 @@ private TransactionRemarkMapper transactionRemarkMapper;
             activity.setOwner(user.getName());
         }
         return activities;
+    }
+
+
+
+    @Override
+    public TransactionEchartsResultVo queryClueEcharts() {
+        List<Map<String, String>> stringListMap = clueMapper.queryClueEcharts();
+        Map<String,List<Map<String,String>>> map = new HashMap<>();
+        //图表中的series的data数据
+        map.put("clues",stringListMap);
+        //图表中的legend的data数据
+        List<String> names = new ArrayList<>();
+        for (Map<String,String> m:stringListMap) {
+            String name = m.get("name");
+            names.add(name);
+        }
+        TransactionEchartsResultVo transactionEchartsResultVo = new TransactionEchartsResultVo();
+        transactionEchartsResultVo.setDataMap(map);
+        transactionEchartsResultVo.setDataList(names);
+        return transactionEchartsResultVo;
     }
 }

@@ -1,4 +1,5 @@
 com\project\crm\settings\mapper\UserMapper.class
+com\project\crm\workbench\service\impl\CustomerServiceImpl.class
 com\project\crm\workbench\bean\Customer.class
 com\project\crm\workbench\mapper\TransactionRemarkMapper.class
 com\project\crm\workbench\service\ActivityService.class
@@ -41,8 +42,10 @@ com\project\crm\workbench\mapper\ActivityMapper.class
 com\project\crm\workbench\mapper\ContactsMapper.class
 com\project\crm\workbench\controller\ActivityController.class
 com\project\crm\base\controller\ViewController.class
+com\project\crm\workbench\service\CustomerService.class
 com\project\crm\workbench\bean\Contacts.class
 com\project\crm\workbench\mapper\ClueRemarkMapper.class
+com\project\crm\workbench\bean\CustomerQueryVo.class
 com\project\crm\workbench\bean\TransactionHistory.class
 com\project\crm\workbench\service\impl\ActivityServiceImpl.class
 com\project\crm\workbench\mapper\CustomerMapper.class
@@ -50,5 +53,7 @@ com\project\crm\workbench\service\TranService.class
 com\project\crm\workbench\controller\ClueController.class
 com\project\crm\base\bean\ResultVo.class
 com\project\crm\workbench\bean\ClueActivityRelation.class
+com\project\crm\workbench\controller\CustomerController.class
 com\project\crm\workbench\mapper\ClueMapper.class
 com\project\crm\workbench\mapper\TransactionMapper.class
+com\project\crm\workbench\bean\TransactionEchartsResultVo.class

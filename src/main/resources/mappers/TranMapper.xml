@@ -34,4 +34,8 @@
             </if>
         </where>
     </select>
+
+    <select id="queryTransactionEcharts" resultType="map">
+select count(*) value,stage name from tbl_tran GROUP BY stage
+    </select>
 </mapper>
